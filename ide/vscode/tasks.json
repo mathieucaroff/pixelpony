@@ -1,0 +1,66 @@
+{
+   "version": "2.0.0",
+   "tasks": [
+      {
+         "label": "pixelpony:build watch all",
+         "dependsOn": [
+            "pixelpony:build watch client",
+            "pixelpony:build watch server",
+            "pixelpony:build watch script"
+         ],
+         "problemMatcher": []
+      },
+      {
+         "label": "pixelpony:build watch client",
+         "type": "npm",
+         "script": "build:client:watch",
+         "isBackground": true,
+         "problemMatcher": {
+            "owner": "typescript",
+            "source": "ts",
+            "applyTo": "closedDocuments",
+            "fileLocation": "absolute",
+            "severity": "error",
+            "pattern": [
+               {
+                  "regexp": "\\[tsl\\] ERROR in (.*)?\\((\\d+),(\\d+)\\)",
+                  "file": 1,
+                  "line": 2,
+                  "column": 3
+               },
+               {
+                  "regexp": "\\s*TS\\d+:\\s*(.*)",
+                  "message": 1
+               }
+            ],
+            "background": {
+               "activeOnStart": true,
+               "beginsPattern": {
+                  "regexp": "Compilation (.*?)starting…"
+               },
+               "endsPattern": {
+                  "regexp": "Compilation (.*?)finished"
+               }
+            }
+         }
+      },
+      {
+         "label": "pixelpony:build watch server",
+         "type": "typescript",
+         "tsconfig": "package/server/tsconfig.json",
+         "option": "watch",
+         "problemMatcher": [
+            "$tsc-watch"
+         ]
+      },
+      {
+         "label": "pixelpony:build watch script",
+         "type": "typescript",
+         "tsconfig": "package/script/tsconfig.json",
+         "option": "watch",
+         "problemMatcher": [
+            "$tsc-watch"
+         ]
+      }
+   ]
+}

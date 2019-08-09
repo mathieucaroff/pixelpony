@@ -1,0 +1,25 @@
+{
+   "name": "@pixelpony/script",
+   "version": "1.0.0",
+   "description": "",
+   "main": "dist/script.js",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Mathieu CAROFF <mathieu.caroff@free.fr>",
+   "license": "ISC",
+   "dependencies": {
+      "@pixelpony/client": "*",
+      "@pixelpony/server": "*",
+      "express": "^4.17.1",
+      "tslib": "^1.10.0"
+   },
+   "devDependencies": {
+      "@pixelpony/shared": "*",
+      "@types/webpack": "^4.32.1",
+      "@types/webpack-dev-server": "^3.1.7",
+      "typescript": "^3.5.3",
+      "webpack": "^4.39.1",
+      "webpack-dev-server": "^3.7.2"
+   }
+}

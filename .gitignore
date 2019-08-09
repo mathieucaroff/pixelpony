@@ -1,0 +1,26 @@
+# dot files
+.*
+
+!/.editorconfig
+!/.eslint*
+!/.gitignore
+!/.nvm*
+!/.prettier*
+
+# node
+node_modules
+
+# typescript
+tsconfig.tsbuildinfo
+
+# yarn
+*.log
+
+# js output for webpack and tsc
+dist
+
+# developer specific
+## lox
+tmp
+## raf
+## tern

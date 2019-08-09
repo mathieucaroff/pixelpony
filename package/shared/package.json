@@ -1,0 +1,17 @@
+{
+   "name": "@pixelpony/shared",
+   "version": "1.0.0",
+   "description": "",
+   "types": "shared.d.ts",
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "Mathieu CAROFF <mathieu.caroff@free.fr>",
+   "license": "ISC",
+   "dependencies": {
+      "tslib": "^1.10.0"
+   },
+   "devDependencies": {
+      "typescript": "^3.5.3"
+   }
+}
