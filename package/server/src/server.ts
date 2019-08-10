@@ -17,7 +17,7 @@ import { Registry } from './registry'
 
 export interface ServerParam {
    client: Client
-   app: Express
+   app?: Express
 }
 
 export type Server = (param: ServerParam) => expressWs.Application
