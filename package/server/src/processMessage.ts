@@ -1,9 +1,23 @@
-import { Share } from '@pixelpony/shared'
-
+// Type
+import { Pony, Share, ErrorGift } from '@pixelpony/shared'
+import { Registry } from './registry'
 import { WsGift } from '../type'
 
-export const processMessage = (share: Share): WsGift => {
-   if (share.kind === 'ping') {
+export interface ProcessMessageParam {
+   owner: string
+   registry: Registry<Pony>
+   wsError: (context: ErrorGift['context']) => WsGift
+}
+
+export type ProcessMessage = (
+   share: Share,
+   param: ProcessMessageParam,
+) => WsGift
+
+export const processMessage: ProcessMessage = (share, param) => {
+   let { owner, registry, wsError } = param
+   if (false) {
+   } else if (share.kind === 'ping') {
       let { payload } = share
       return {
          cast: 'uni',
@@ -12,15 +26,29 @@ export const processMessage = (share: Share): WsGift => {
             payload,
          },
       }
-   }
-
-   if (share.kind === 'chat' || share.kind === 'move') {
+   } else if (share.kind === 'chat' || share.kind === 'move') {
       return {
          cast: 'broad',
          gift: share,
       }
-   }
-
-   if (share.kind === 'registerPony') {
+   } else if (share.kind === 'registerPony') {
+      let ponyToken = registry.create(owner, share.pony)
+      return {
+         cast: 'uni',
+         gift: {
+            kind: 'ponyToken',
+            ponyToken,
+         },
+      }
+   } else {
+      return {
+         cast: 'uni',
+         gift: {
+            kind: 'error',
+            context: {
+               json: share,
+            },
+         },
+      }
    }
 }

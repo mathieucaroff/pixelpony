@@ -1,6 +1,5 @@
 import { resolve } from 'path'
 import * as webpack from 'webpack'
-import {} from 'webpack-dev-server'
 import { default as CopyPlugin } from 'copy-webpack-plugin'
 
 export default (env, argv): webpack.Configuration[] => {
@@ -25,12 +24,6 @@ export default (env, argv): webpack.Configuration[] => {
          output: {
             filename: 'public/pixelpony-client.js',
             path: dist,
-         },
-         devServer: {
-            publicPath: '/dist/',
-            watchContentBase: true,
-            overlay: true,
-            port: 9123,
          },
          plugins: [
             new webpack.DefinePlugin({

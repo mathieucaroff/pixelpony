@@ -2,7 +2,8 @@
    "name": "@pixelpony/shared",
    "version": "1.0.0",
    "description": "",
-   "types": "shared.d.ts",
+   "main": "dist/shared.js",
+   "types": "dist/shared.d.ts",
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
    },

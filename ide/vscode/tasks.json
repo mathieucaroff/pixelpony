@@ -5,7 +5,6 @@
          "label": "pixelpony:build watch all",
          "dependsOn": [
             "pixelpony:build watch client",
-            "pixelpony:build watch server",
             "pixelpony:build watch script"
          ],
          "problemMatcher": []
@@ -57,6 +56,15 @@
          "label": "pixelpony:build watch script",
          "type": "typescript",
          "tsconfig": "package/script/tsconfig.json",
+         "option": "watch",
+         "problemMatcher": [
+            "$tsc-watch"
+         ]
+      },
+      {
+         "label": "pixelpony:build watch shared",
+         "type": "typescript",
+         "tsconfig": "package/shared/tsconfig.json",
          "option": "watch",
          "problemMatcher": [
             "$tsc-watch"

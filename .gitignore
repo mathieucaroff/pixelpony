@@ -17,7 +17,7 @@ tsconfig.tsbuildinfo
 *.log
 
 # js output for webpack and tsc
-dist
+dist/
 
 # developer specific
 ## lox

@@ -14,5 +14,5 @@ Using ESLint is recommended
 
 ### Code formating
 
-All submitted code must be formatted using Prettier (aka. prettier.js) ; using
+All submitted code must be formatted using Prettier (aka. prettier.js). Using
 the VSCode extension is recommended

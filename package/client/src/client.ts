@@ -21,6 +21,8 @@ ws.onmessage = (messageEvent) => {
       console.log('chat:', message.content)
    } else if (message.kind === 'move') {
       console.log('move:', message)
+   } else if (message.kind === 'ponyToken') {
+      console.log('ponyToken:', message.ponyToken)
    }
 }
 let expo = window as any

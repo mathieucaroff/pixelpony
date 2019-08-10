@@ -6,15 +6,18 @@ import { default as expressWs } from 'express-ws'
 import { default as serveFavicon } from 'serve-favicon'
 
 import { processMessage } from './processMessage'
+import { validate } from './validate'
 
 // Types
 import { Express } from 'express'
-import { Client } from '@pixelpony/shared'
+import { Client, ErrorGift, Pony } from '@pixelpony/shared'
 import { WsGift } from '../type'
+import { handleMessage } from './handleMessage'
+import { Registry } from './registry'
 
 export interface ServerParam {
    client: Client
-   app?: Express
+   app: Express
 }
 
 export type Server = (param: ServerParam) => expressWs.Application
@@ -45,46 +48,39 @@ export const server: Server = (param) => {
       })
    }
 
+   // Known ponies
+   let registry = new Registry<Pony>()
+
    // Ws Routes
    ews.app.ws('/websocket', (ws, req) => {
-      ws.on
+      let castingMethod = {
+         uni: ws.send.bind(ws),
+         broad: broadcast,
+      }
+
       ws.onmessage = (event) => {
          let { data, type } = event
          console.log(event)
+
          if (type === 'message') {
             // ^ Maybe unecessary verification - idk ox
 
             let text = `${data}`
 
-            let json: any
-            let response: WsGift
-            try {
-               json = JSON.parse(text)
-               response = processMessage(json)
-            } catch (e) {
-               let context = {
-                  ...(json === undefined ? { text } : { json }),
-               }
-               response = {
-                  cast: 'uni',
-                  gift: {
-                     kind: 'error',
-                     context,
-                  },
-               }
+            let response: WsGift = handleMessage(text, {
+               processMessage,
+               registry,
+            })
+            // -- //
+            if (response.cast !== 'no') {
+               let { cast, gift: downMessage } = response
+
+               let caster = castingMethod[cast]
+
+               caster(JSON.stringify(downMessage))
             }
-            if (response.cast === 'no') {
-               return
-            }
-
-            let { cast, gift: downMessage } = response
-
-            let caster = {
-               uni: ws.send.bind(ws),
-               broad: broadcast,
-            }[cast]
-
-            caster(JSON.stringify(downMessage))
+         } else {
+            console.log('type !== "message"')
          }
       }
    })
