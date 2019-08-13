@@ -16,6 +16,7 @@
       "build:server": "cd package/server && tsc",
       "build:shared": "cd package/shared && tsc",
       "dev": "nodemon --inspect package/script/dist/serve.js",
+      "gen:Share.json": "typescript-json-schema ./package/shared/**/*.ts Share > ./package/shared/src/jsonSchema/Share.json",
       "lint": "eslint **/*.ts",
       "start": "node package/script/dist/serve.js"
    },

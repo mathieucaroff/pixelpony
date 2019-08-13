@@ -41,12 +41,14 @@ Note for pure command line users:
 The tasks run in VSCode can also be run in the command line:
 
 - Build watch the client: `yarn build:client:watch`
+- Build watch the shared package: `cd package/shared && yarn tsc --watch`
+- Build watch the server package: `cd package/server && yarn tsc --watch`
 - Build watch the script package: `cd package/script && yarn tsc --watch`
   - The server is referenced from the script package, so it'll be built by tsc
     all along.
 - Have nodemon run the server: `yarn dev`
 
-...and if you don't want to use the VSCode debugger, Chrome has one which can connect to nodejs, just like VSCode.
+...and if you don't want to use the VSCode debugger, Chrome has one which can connect to nodejs, just like VSCode. It is easier to use with [`ndb`](https://www.npmjs.com/package/ndb)
 
 ## Structure
 

@@ -3,11 +3,27 @@
 import { Vec2D } from '../algebra'
 import { Pony } from '../pony'
 
-export type Share = PingShare | RegisterPonyShare | MoveShare | ChatShare
+export type Share =
+   | PingShare
+   | ChatShare
+   | GetPonyShare
+   | MoveShare
+   | RegisterPonyShare
 
 export interface PingShare {
    kind: 'ping'
    payload: string
+}
+
+export interface ChatShare {
+   kind: 'chat'
+   ponyToken: string
+   content: string
+}
+
+export interface GetPonyShare {
+   kind: 'getPony'
+   ponyToken: string
 }
 
 export interface MoveShare {
@@ -16,12 +32,6 @@ export interface MoveShare {
    pos: Vec2D
    speed: Vec2D
    time: string
-}
-
-export interface ChatShare {
-   kind: 'chat'
-   ponyToken: string
-   content: string
 }
 
 export interface RegisterPonyShare {

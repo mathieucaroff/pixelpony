@@ -1,15 +1,15 @@
-// JS
-import { validate } from './validate'
-
 // Type
 import { ErrorGift, Pony } from '@pixelpony/shared'
 import { ProcessMessage } from './processMessage'
 import { Registry } from './registry'
+import { Validate } from './validate'
 import { WsGift } from '../type'
 
 export interface HandleMessageParam {
+   sender: unknown
    processMessage: ProcessMessage
-   registry: Registry<Pony>
+   registry: Registry<unknown, Pony>
+   validate: Validate
 }
 
 let wsError = (context): WsGift => {
@@ -26,7 +26,7 @@ export const handleMessage = (
    text: string,
    param: HandleMessageParam,
 ): WsGift => {
-   let { processMessage, registry } = param
+   let { sender, processMessage, registry, validate } = param
 
    let json: any
    let response: WsGift
@@ -43,9 +43,8 @@ export const handleMessage = (
       return wsError({ json, validation: valid.errors })
    }
    let share = valid.data
-   let owner = 'everycreature'
    try {
-      response = processMessage(share, { owner, registry, wsError })
+      response = processMessage(share, { sender, registry, wsError })
    } catch (e) {
       return wsError({ share })
    }

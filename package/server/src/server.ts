@@ -1,4 +1,5 @@
 // JS
+import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
 import { default as express } from 'express'
@@ -49,11 +50,11 @@ export const server: Server = (param) => {
    }
 
    // Known ponies
-   let registry = new Registry<Pony>()
+   let registry = new Registry<unknown, Pony>()
 
    // Ws Routes
    ews.app.ws('/websocket', (ws, req) => {
-      let castingMethod = {
+      let castingFunction = {
          uni: ws.send.bind(ws),
          broad: broadcast,
       }
@@ -68,14 +69,16 @@ export const server: Server = (param) => {
             let text = `${data}`
 
             let response: WsGift = handleMessage(text, {
+               sender: ws as unknown,
                processMessage,
                registry,
+               validate,
             })
             // -- //
             if (response.cast !== 'no') {
                let { cast, gift: downMessage } = response
 
-               let caster = castingMethod[cast]
+               let caster = castingFunction[cast]
 
                caster(JSON.stringify(downMessage))
             }
@@ -89,8 +92,9 @@ export const server: Server = (param) => {
    app.get('/', (req, res) => {
       res.sendFile(htmlRootPath)
    })
+   let favicon = readFileSync(faviconPath)
    app.get('/favicon', (req, res) => {
-      res.sendFile(faviconPath)
+      res.send(favicon)
    })
    app.use(
       express.static(publicPath, {

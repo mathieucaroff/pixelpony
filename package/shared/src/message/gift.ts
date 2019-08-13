@@ -1,8 +1,15 @@
 // Gift:
 // server -> client
-import { ChatShare, MoveShare } from './share'
+import { Pony } from '../pony'
+import { ChatShare, MoveShare, Share } from './share'
 
-export type Gift = PongGift | ErrorGift | MoveGift | ChatGift | PonyTokenGift
+export type Gift =
+   | PongGift
+   | ErrorGift
+   | ChatGift
+   | MoveGift
+   | PonyGift
+   | PonyTokenGift
 export type GiftKind = Gift['kind']
 
 export interface PongGift {
@@ -15,13 +22,21 @@ export interface ErrorGift {
    context: {
       text?: string
       json?: unknown
+      note?: string
+      ponyToken?: string
+      share?: Share
       validation?: unknown
    }
 }
 
+export type ChatGift = ChatShare
+
 export type MoveGift = MoveShare
 
-export type ChatGift = ChatShare
+export interface PonyGift {
+   kind: 'pony'
+   pony: Pony
+}
 
 export interface PonyTokenGift {
    kind: 'ponyToken'

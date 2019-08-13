@@ -5,7 +5,9 @@
          "label": "pixelpony:build watch all",
          "dependsOn": [
             "pixelpony:build watch client",
-            "pixelpony:build watch script"
+            "pixelpony:build watch server",
+            "pixelpony:build watch script",
+            "pixelpony:build watch shared"
          ],
          "problemMatcher": []
       },

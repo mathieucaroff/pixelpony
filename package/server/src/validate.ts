@@ -9,14 +9,14 @@ import { Share } from '@pixelpony/shared'
 let ajv = new Ajv()
 
 let schemaToValidator = <T>(schema: () => object | boolean) => {
-   let vf: Ajv.ValidateFunction | undefined
+   let validFunc: Ajv.ValidateFunction | undefined
    let validator = (input: unknown) => {
-      if (!vf) {
-         vf = ajv.compile(schema)
+      if (!validFunc) {
+         validFunc = ajv.compile(schema)
       }
-      let ok = vf(input) as boolean
+      let ok = validFunc(input) as boolean
       let data = input as T
-      return ok ? { data } : { errors: vf.errors }
+      return ok ? { data } : { errors: validFunc.errors }
    }
    return validator
 }
@@ -30,3 +30,5 @@ let schemaReader = (name: string) => () => {
 export const validate = {
    Share: schemaToValidator<Share>(schemaReader('Share')),
 }
+
+export type Validate = typeof validate

@@ -5,12 +5,12 @@ export interface RegistryProp {
    totalCreates: number
 }
 
-export class Registry<TContent = unknown> {
+export class Registry<TOwner = unknown, TContent = unknown> {
    prop: RegistryProp
    data: Record<
       string,
       {
-         owner: string
+         owner: TOwner
          content: TContent
          lastInteraction: number
       }
@@ -40,7 +40,7 @@ export class Registry<TContent = unknown> {
          }
       })
    }
-   create(owner: string, content: TContent): string {
+   create(owner: TOwner, content: TContent): string {
       let token = this.token()
       this.data[token] = {
          owner,
@@ -51,7 +51,7 @@ export class Registry<TContent = unknown> {
       this.autoClean()
       return token
    }
-   delete(owner: string, token: string) {
+   delete(owner: TOwner, token: string) {
       let valid = this.validate(owner, token)
       if (valid.ok) {
          delete this.data[token]
@@ -67,7 +67,7 @@ export class Registry<TContent = unknown> {
          return null
       }
    }
-   validate(owner: string, token: string) {
+   validate(owner: TOwner, token: string) {
       let piece = this.data[token]
       if (piece) {
          if (piece.owner === owner) {
@@ -88,7 +88,7 @@ export class Registry<TContent = unknown> {
       } while (this.data[token])
       return token
    }
-   update(owner: string, token: string, content: TContent) {
+   update(owner: TOwner, token: string, content: TContent) {
       let valid = this.validate(owner, token)
       if (valid.ok) {
          this.data[token] = {

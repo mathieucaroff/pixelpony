@@ -4,8 +4,8 @@ import { Registry } from './registry'
 import { WsGift } from '../type'
 
 export interface ProcessMessageParam {
-   owner: string
-   registry: Registry<Pony>
+   sender: unknown
+   registry: Registry<unknown, Pony>
    wsError: (context: ErrorGift['context']) => WsGift
 }
 
@@ -15,9 +15,8 @@ export type ProcessMessage = (
 ) => WsGift
 
 export const processMessage: ProcessMessage = (share, param) => {
-   let { owner, registry, wsError } = param
-   if (false) {
-   } else if (share.kind === 'ping') {
+   let { sender: owner, registry, wsError } = param
+   if (share.kind === 'ping') {
       let { payload } = share
       return {
          cast: 'uni',
@@ -40,15 +39,25 @@ export const processMessage: ProcessMessage = (share, param) => {
             ponyToken,
          },
       }
-   } else {
-      return {
-         cast: 'uni',
-         gift: {
-            kind: 'error',
-            context: {
-               json: share,
+   } else if (share.kind === 'getPony') {
+      let { ponyToken } = share
+      let pony = registry.read(ponyToken)
+      if (pony) {
+         return {
+            cast: 'uni',
+            gift: {
+               kind: 'pony',
+               pony,
             },
-         },
+         }
+      } else {
+         return wsError({
+            ponyToken,
+         })
       }
+   } else {
+      return wsError({
+         share,
+      })
    }
 }
