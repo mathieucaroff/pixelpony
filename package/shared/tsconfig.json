@@ -3,5 +3,8 @@
    "compilerOptions": {
       "composite": true,
       "outDir": "./dist",
-   }
+   },
+   "files": [
+      "src/config.ts"
+   ]
 }

@@ -11,7 +11,7 @@ import { validate } from './validate'
 
 // Types
 import { Express } from 'express'
-import { Client, ErrorGift, Pony } from '@pixelpony/shared'
+import { Client, Pony } from '@pixelpony/shared'
 import { WsGift } from '../type'
 import { handleMessage } from './handleMessage'
 import { Registry } from './registry'
@@ -83,7 +83,7 @@ export const server: Server = (param) => {
                caster(JSON.stringify(downMessage))
             }
          } else {
-            console.log('type !== "message"')
+            console.log('type !== "message" -- the verification is usefull')
          }
       }
    })
