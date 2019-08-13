@@ -9,7 +9,7 @@
       "package/*"
    ],
    "scripts": {
-      "build:all": "npm-run-all build:client build:script build:server build:shared",
+      "build:all": "npm-run-all build:shared build:client build:server build:script",
       "build:client": "cd package/client && webpack",
       "build:client:watch": "cd package/client && webpack --watch",
       "build:script": "cd package/script && tsc",
