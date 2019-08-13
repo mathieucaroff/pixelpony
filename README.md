@@ -4,6 +4,8 @@ An open-source clone of Pony Town
 
 ## Developer setup
 
+Use the latest version of nodejs (12.7.0+).
+
 If you've never used yarn before:
 
 ```sh
@@ -29,7 +31,7 @@ Then, in VSCode:
   auto-re-attach". Then type "nodemon" to narrow the displayed processes to
   only a handful. If there are only two, you can normally select any. If there
   are more, narrow more by adding the words "script", "dist" and (in the worst
-  case scenario) "inspect" and "script.js"
+  case scenario) "inspect" and "script.js".
 
 Note about the VSCode configuration:
 
@@ -44,11 +46,9 @@ The tasks run in VSCode can also be run in the command line:
 - Build watch the shared package: `cd package/shared && yarn tsc --watch`
 - Build watch the server package: `cd package/server && yarn tsc --watch`
 - Build watch the script package: `cd package/script && yarn tsc --watch`
-  - The server is referenced from the script package, so it'll be built by tsc
-    all along.
 - Have nodemon run the server: `yarn dev`
 
-...and if you don't want to use the VSCode debugger, Chrome has one which can connect to nodejs, just like VSCode. It is easier to use with [`ndb`](https://www.npmjs.com/package/ndb)
+...and if you don't want to use the VSCode debugger, Chrome has one which can connect to nodejs, just like VSCode. It is easier to use with [`ndb`](https://www.npmjs.com/package/ndb).
 
 ## Structure
 
