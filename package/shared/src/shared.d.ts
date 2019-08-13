@@ -1,5 +1,5 @@
 // JS
-// export * from '../dist/src/config'
+export * from '../dist/src/config'
 
 // Type
 export * from './algebra'
