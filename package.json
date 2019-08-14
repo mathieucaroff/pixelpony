@@ -16,23 +16,35 @@
       "build:server": "cd package/server && tsc",
       "build:shared": "cd package/shared && tsc",
       "dev": "nodemon --inspect package/script/dist/serve.js",
-      "gen:Share.json": "typescript-json-schema ./package/shared/**/*.ts Share > ./package/shared/src/jsonSchema/Share.json",
+      "gen:Share.json": "typescript-json-schema --noExtraProps --required ./package/shared/**/*.ts Share --out ./package/shared/src/jsonSchema/Share.json",
       "lint": "eslint **/*.ts",
-      "start": "node package/script/dist/serve.js"
+      "production": "pm2 reload ecosystem.config.js --env production",
+      "start": "node package/script/dist/serve.js",
+      "test:server": "cd package/server && jest --watch"
    },
    "devDependencies": {
+      "@types/jest": "^24.0.17",
       "@typescript-eslint/eslint-plugin": "^1.13.0",
       "@typescript-eslint/parser": "^1.13.0",
+      "cross-env": "^5.2.0",
       "depcheck": "^0.8.3",
       "eslint": "^6.1.0",
+      "jest": "^24.8.0",
       "lerna": "^3.16.4",
       "nodemon": "^1.19.1",
       "npm-check": "^5.9.0",
       "npm-run-all": "^4.1.5",
+      "pm2": "^3.5.1",
       "prettier": "^1.18.2",
+      "ts-jest": "^24.0.2",
       "ts-node": "^8.3.0",
       "typed-install": "^1.0.6",
       "typescript": "^3.5.3",
       "typescript-json-schema": "^0.39.0"
-   }
+   },
+  "jest": {
+    "projects": [
+      "<rootDir>/packages/*"
+    ]
+  }
 }
