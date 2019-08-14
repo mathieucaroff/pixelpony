@@ -1,267 +1,265 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "anyOf": [
-        {
-            "$ref": "#/definitions/PingShare"
-        },
-        {
-            "$ref": "#/definitions/ChatShare"
-        },
-        {
-            "$ref": "#/definitions/GetPonyShare"
-        },
-        {
-            "$ref": "#/definitions/MoveShare"
-        },
-        {
-            "$ref": "#/definitions/RegisterPonyShare"
-        }
-    ],
-    "definitions": {
-        "ChatShare": {
-            "additionalProperties": false,
-            "properties": {
-                "content": {
-                    "type": "string"
-                },
-                "kind": {
-                    "enum": [
-                        "chat"
-                    ],
-                    "type": "string"
-                },
-                "ponyToken": {
-                    "type": "string"
-                }
+   "$schema": "http://json-schema.org/draft-07/schema#",
+   "anyOf": [{
+         "$ref": "#/definitions/PingShare"
+      },
+      {
+         "$ref": "#/definitions/ChatShare"
+      },
+      {
+         "$ref": "#/definitions/GetPonyShare"
+      },
+      {
+         "$ref": "#/definitions/MoveShare"
+      },
+      {
+         "$ref": "#/definitions/RegisterPonyShare"
+      }
+   ],
+   "definitions": {
+      "ChatShare": {
+         "additionalProperties": false,
+         "properties": {
+            "content": {
+               "type": "string"
             },
-            "required": [
-                "content",
-                "kind",
-                "ponyToken"
-            ],
-            "type": "object"
-        },
-        "Colorful": {
-            "additionalProperties": false,
-            "properties": {
-                "color": {
-                    "type": "string"
-                }
+            "kind": {
+               "enum": [
+                  "chat"
+               ],
+               "type": "string"
             },
-            "required": [
-                "color"
-            ],
-            "type": "object"
-        },
-        "GetPonyShare": {
-            "additionalProperties": false,
-            "properties": {
-                "kind": {
-                    "enum": [
-                        "getPony"
-                    ],
-                    "type": "string"
-                },
-                "ponyToken": {
-                    "type": "string"
-                }
+            "ponyToken": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "content",
+            "kind",
+            "ponyToken"
+         ],
+         "type": "object"
+      },
+      "Colorful": {
+         "additionalProperties": false,
+         "properties": {
+            "color": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "color"
+         ],
+         "type": "object"
+      },
+      "GetPonyShare": {
+         "additionalProperties": false,
+         "properties": {
+            "kind": {
+               "enum": [
+                  "getPony"
+               ],
+               "type": "string"
             },
-            "required": [
-                "kind",
-                "ponyToken"
-            ],
-            "type": "object"
-        },
-        "MoveShare": {
-            "additionalProperties": false,
-            "properties": {
-                "kind": {
-                    "enum": [
-                        "move"
-                    ],
-                    "type": "string"
-                },
-                "ponyToken": {
-                    "type": "string"
-                },
-                "pos": {
-                    "$ref": "#/definitions/Vec2D"
-                },
-                "speed": {
-                    "$ref": "#/definitions/Vec2D"
-                },
-                "time": {
-                    "type": "string"
-                }
+            "ponyToken": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "kind",
+            "ponyToken"
+         ],
+         "type": "object"
+      },
+      "MoveShare": {
+         "additionalProperties": false,
+         "properties": {
+            "kind": {
+               "enum": [
+                  "move"
+               ],
+               "type": "string"
             },
-            "required": [
-                "kind",
-                "ponyToken",
-                "pos",
-                "speed",
-                "time"
-            ],
-            "type": "object"
-        },
-        "PingShare": {
-            "additionalProperties": false,
-            "properties": {
-                "kind": {
-                    "enum": [
-                        "ping"
-                    ],
-                    "type": "string"
-                },
-                "payload": {
-                    "type": "string"
-                }
+            "ponyToken": {
+               "type": "string"
             },
-            "required": [
-                "kind",
-                "payload"
-            ],
-            "type": "object"
-        },
-        "Pony": {
-            "additionalProperties": false,
-            "properties": {
-                "body": {
-                    "additionalProperties": false,
-                    "properties": {
-                        "coat": {
-                            "$ref": "#/definitions/Colorful"
+            "pos": {
+               "$ref": "#/definitions/Vec2D"
+            },
+            "speed": {
+               "$ref": "#/definitions/Vec2D"
+            },
+            "time": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "kind",
+            "ponyToken",
+            "pos",
+            "speed",
+            "time"
+         ],
+         "type": "object"
+      },
+      "PingShare": {
+         "additionalProperties": false,
+         "properties": {
+            "kind": {
+               "enum": [
+                  "ping"
+               ],
+               "type": "string"
+            },
+            "payload": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "kind",
+            "payload"
+         ],
+         "type": "object"
+      },
+      "Pony": {
+         "additionalProperties": false,
+         "properties": {
+            "body": {
+               "additionalProperties": false,
+               "properties": {
+                  "coat": {
+                     "$ref": "#/definitions/Colorful"
+                  },
+                  "eye": {
+                     "$ref": "#/definitions/Colorful"
+                  },
+                  "horn": {
+                     "additionalProperties": false,
+                     "properties": {
+                        "color": {
+                           "type": "string"
                         },
-                        "eye": {
-                            "$ref": "#/definitions/Colorful"
-                        },
-                        "horn": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "color": {
-                                    "type": "string"
-                                },
-                                "kind": {
-                                    "enum": [
-                                        "common",
-                                        "curved",
-                                        "long"
-                                    ],
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "color",
-                                "kind"
-                            ],
-                            "type": "object"
-                        },
-                        "mane": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "color": {
-                                    "type": "string"
-                                },
-                                "shape": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "color",
-                                "shape"
-                            ],
-                            "type": "object"
-                        },
-                        "tail": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "color": {
-                                    "type": "string"
-                                },
-                                "shape": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "color",
-                                "shape"
-                            ],
-                            "type": "object"
-                        },
-                        "wing": {
-                            "additionalProperties": false,
-                            "properties": {
-                                "color": {
-                                    "type": "string"
-                                },
-                                "kind": {
-                                    "enum": [
-                                        "bat",
-                                        "bird",
-                                        "changeling"
-                                    ],
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "color",
-                                "kind"
-                            ],
-                            "type": "object"
+                        "kind": {
+                           "enum": [
+                              "common",
+                              "curved",
+                              "long"
+                           ],
+                           "type": "string"
                         }
-                    },
-                    "required": [
-                        "coat",
-                        "eye",
-                        "mane",
-                        "tail"
-                    ],
-                    "type": "object"
-                },
-                "name": {
-                    "type": "string"
-                }
+                     },
+                     "required": [
+                        "color",
+                        "kind"
+                     ],
+                     "type": "object"
+                  },
+                  "mane": {
+                     "additionalProperties": false,
+                     "properties": {
+                        "color": {
+                           "type": "string"
+                        },
+                        "shape": {
+                           "type": "string"
+                        }
+                     },
+                     "required": [
+                        "color",
+                        "shape"
+                     ],
+                     "type": "object"
+                  },
+                  "tail": {
+                     "additionalProperties": false,
+                     "properties": {
+                        "color": {
+                           "type": "string"
+                        },
+                        "shape": {
+                           "type": "string"
+                        }
+                     },
+                     "required": [
+                        "color",
+                        "shape"
+                     ],
+                     "type": "object"
+                  },
+                  "wing": {
+                     "additionalProperties": false,
+                     "properties": {
+                        "color": {
+                           "type": "string"
+                        },
+                        "kind": {
+                           "enum": [
+                              "bat",
+                              "bird",
+                              "changeling"
+                           ],
+                           "type": "string"
+                        }
+                     },
+                     "required": [
+                        "color",
+                        "kind"
+                     ],
+                     "type": "object"
+                  }
+               },
+               "required": [
+                  "coat",
+                  "eye",
+                  "mane",
+                  "tail"
+               ],
+               "type": "object"
             },
-            "required": [
-                "body",
-                "name"
-            ],
-            "type": "object"
-        },
-        "RegisterPonyShare": {
-            "additionalProperties": false,
-            "properties": {
-                "kind": {
-                    "enum": [
-                        "registerPony"
-                    ],
-                    "type": "string"
-                },
-                "pony": {
-                    "$ref": "#/definitions/Pony"
-                }
+            "name": {
+               "type": "string"
+            }
+         },
+         "required": [
+            "body",
+            "name"
+         ],
+         "type": "object"
+      },
+      "RegisterPonyShare": {
+         "additionalProperties": false,
+         "properties": {
+            "kind": {
+               "enum": [
+                  "registerPony"
+               ],
+               "type": "string"
             },
-            "required": [
-                "kind",
-                "pony"
-            ],
-            "type": "object"
-        },
-        "Vec2D": {
-            "additionalProperties": false,
-            "properties": {
-                "x": {
-                    "type": "number"
-                },
-                "y": {
-                    "type": "number"
-                }
+            "pony": {
+               "$ref": "#/definitions/Pony"
+            }
+         },
+         "required": [
+            "kind",
+            "pony"
+         ],
+         "type": "object"
+      },
+      "Vec2D": {
+         "additionalProperties": false,
+         "properties": {
+            "x": {
+               "type": "number"
             },
-            "required": [
-                "x",
-                "y"
-            ],
-            "type": "object"
-        }
-    }
+            "y": {
+               "type": "number"
+            }
+         },
+         "required": [
+            "x",
+            "y"
+         ],
+         "type": "object"
+      }
+   }
 }
-

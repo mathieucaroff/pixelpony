@@ -16,7 +16,7 @@
       "build:server": "cd package/server && tsc",
       "build:shared": "cd package/shared && tsc",
       "dev": "nodemon --inspect package/script/dist/serve.js",
-      "gen:Share.json": "typescript-json-schema --noExtraProps --required ./package/shared/**/*.ts Share --out ./package/shared/src/jsonSchema/Share.json",
+      "gen:Share.json": "typescript-json-schema --noExtraProps --required ./package/shared/**/*.ts Share | js-beautify -s 3 > ./package/shared/src/jsonSchema/Share.json",
       "lint": "eslint **/*.ts",
       "production": "pm2 reload ecosystem.config.js --env production",
       "start": "node package/script/dist/serve.js",
@@ -30,6 +30,7 @@
       "depcheck": "^0.8.3",
       "eslint": "^6.1.0",
       "jest": "^24.8.0",
+      "js-beautify": "^1.10.2",
       "lerna": "^3.16.4",
       "nodemon": "^1.19.1",
       "npm-check": "^5.9.0",
@@ -42,9 +43,9 @@
       "typescript": "^3.5.3",
       "typescript-json-schema": "^0.39.0"
    },
-  "jest": {
-    "projects": [
-      "<rootDir>/packages/*"
-    ]
-  }
+   "jest": {
+      "projects": [
+         "<rootDir>/packages/*"
+      ]
+   }
 }
