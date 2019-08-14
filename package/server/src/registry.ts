@@ -36,7 +36,7 @@ export class Registry<TOwner = unknown, TContent = unknown> {
       let now = Date.now()
       Object.entries(this.data).forEach(([k, v]) => {
          if (now - v.lastInteraction > expirationPeriodMs) {
-            v.lastInteraction
+            delete this.data[k]
          }
       })
    }
@@ -98,5 +98,8 @@ export class Registry<TOwner = unknown, TContent = unknown> {
          }
       }
       return valid
+   }
+   size() {
+      return Object.keys(this.data).length
    }
 }

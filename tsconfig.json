@@ -2,8 +2,6 @@
    "compilerOptions": {
      "composite": true
    },
-   "files": [],
-   "include": [],
    "references": [
       { "path": "./package/script/tsconfig.json" },
       { "path": "./package/server/tsconfig.json" },

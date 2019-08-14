@@ -6,14 +6,11 @@ import { default as express } from 'express'
 import { default as expressWs } from 'express-ws'
 import { default as serveFavicon } from 'serve-favicon'
 
-import { processMessage } from './processMessage'
-import { validate } from './validate'
+import { getOnMessage } from './getOnMessage'
 
 // Types
 import { Express } from 'express'
 import { Client, Pony } from '@pixelpony/shared'
-import { WsGift } from '../type'
-import { handleMessage } from './handleMessage'
 import { Registry } from './registry'
 
 export interface ServerParam {
@@ -43,45 +40,19 @@ export const server: Server = (param) => {
       }),
    )
 
-   let broadcast = (txt) => {
-      wss.clients.forEach((ws) => {
-         ws.send(txt)
-      })
-   }
-
    // Known ponies
    let registry = new Registry<unknown, Pony>()
 
    // Ws Routes
    ews.app.ws('/websocket', (ws, req) => {
-      let castingFunction = {
-         uni: ws.send.bind(ws),
-         broad: broadcast,
-      }
+      let { onmessage } = getOnMessage({ registry, ws, wss })
 
       ws.onmessage = (event) => {
-         let { data, type } = event
+         let { type } = event
          console.log(event)
-
          if (type === 'message') {
             // ^ Maybe unecessary verification - idk ox
-
-            let text = `${data}`
-
-            let response: WsGift = handleMessage(text, {
-               sender: ws as unknown,
-               processMessage,
-               registry,
-               validate,
-            })
-            // -- //
-            if (response.cast !== 'no') {
-               let { cast, gift: downMessage } = response
-
-               let caster = castingFunction[cast]
-
-               caster(JSON.stringify(downMessage))
-            }
+            onmessage(event)
          } else {
             console.log('type !== "message" -- the verification is usefull')
          }

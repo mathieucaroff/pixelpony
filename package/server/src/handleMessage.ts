@@ -12,7 +12,7 @@ export interface HandleMessageParam {
    validate: Validate
 }
 
-let wsError = (context): WsGift => {
+export let wsError = (context): WsGift => {
    return {
       cast: 'uni',
       gift: {

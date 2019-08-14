@@ -1,6 +1,7 @@
 {
    "extends": "../../tsconfig.base",
    "compilerOptions": {
+      "composite": true,
       "outDir": "./dist",
    },
    "references": [{

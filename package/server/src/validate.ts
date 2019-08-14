@@ -12,7 +12,7 @@ let schemaToValidator = <T>(schema: () => object | boolean) => {
    let validFunc: Ajv.ValidateFunction | undefined
    let validator = (input: unknown) => {
       if (!validFunc) {
-         validFunc = ajv.compile(schema)
+         validFunc = ajv.compile(schema())
       }
       let ok = validFunc(input) as boolean
       let data = input as T

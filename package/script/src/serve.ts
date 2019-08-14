@@ -5,7 +5,7 @@ let app = server({
    client: pixelPonyClientConfig,
 })
 
-const PORT = 4000
+let { PORT } = process.env
 
 app.listen(PORT, () => {
    console.log(`🚀 Listening on port ${PORT}`)
