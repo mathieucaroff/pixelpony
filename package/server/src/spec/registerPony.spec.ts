@@ -1,5 +1,5 @@
 // JS
-import { handleMessage, wsError } from '../handleMessage'
+import { handleMessage } from '../handleMessage'
 import { processMessage } from '../processMessage'
 import { Registry } from '../registry'
 import { validate } from '../validate'

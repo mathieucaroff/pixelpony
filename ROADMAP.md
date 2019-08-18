@@ -14,3 +14,8 @@
 - https
 - Auto-deploy
 - CI
+
+## Todo
+
+- Split server.ts into start.ts and route.ts
+- Refactor code to use less callback passing, less dependecy injetion and more coroutines

@@ -4,9 +4,6 @@
    "description": "",
    "main": "dist/src/config.js",
    "types": "src/shared.d.ts",
-   "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-   },
    "author": "Mathieu CAROFF <mathieu.caroff@free.fr>",
    "license": "ISC",
    "dependencies": {

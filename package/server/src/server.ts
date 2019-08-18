@@ -8,7 +8,7 @@ import { default as serveFavicon } from 'serve-favicon'
 
 import { getOnMessage } from './getOnMessage'
 
-// Types
+// Type
 import { Express } from 'express'
 import { Client, Pony } from '@pixelpony/shared'
 import { Registry } from './registry'

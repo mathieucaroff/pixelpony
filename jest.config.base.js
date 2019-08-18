@@ -15,6 +15,8 @@ module.exports = {
    transform: {
       '^.+\\.(ts|tsx)$': 'ts-jest',
    },
-   testMatch: [testFilePatterns[process.env.TEST_TYPE || 'spec']],
+   testMatch: process.env.TEST_TYPE
+      ? [testFilePatterns[process.env.TEST_TYPE]]
+      : 'unit spec e2e'.split(' ').map((k) => testFilePatterns[k]),
    testEnvironment: 'node',
 }

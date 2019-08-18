@@ -20,7 +20,7 @@
       "lint": "eslint **/*.ts",
       "production": "pm2 reload ecosystem.config.js --env production",
       "start": "node package/script/dist/serve.js",
-      "test:server": "cd package/server && jest --watch"
+      "test:server": "cd package/server && jest --watch all"
    },
    "devDependencies": {
       "@types/jest": "^24.0.17",

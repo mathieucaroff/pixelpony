@@ -58,7 +58,7 @@ export class Registry<TOwner = unknown, TContent = unknown> {
       }
       return valid
    }
-   read(token): TContent | null {
+   read(token: string): TContent | null {
       let piece = this.data[token]
       if (piece) {
          piece.lastInteraction = Date.now()

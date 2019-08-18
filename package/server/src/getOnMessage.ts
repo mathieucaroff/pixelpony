@@ -2,7 +2,7 @@
 import { processMessage } from './processMessage'
 import { validate } from './validate'
 
-// Types
+// Type
 import { default as WebSocket, Server } from 'ws'
 import { Pony } from '@pixelpony/shared'
 import { handleMessage } from './handleMessage'
@@ -19,7 +19,7 @@ export const getOnMessage = (prop: OnMessageProp) => {
    let { registry, ws, wss } = prop
 
    let castingFunction = {
-      uni: ws.send.bind(ws),
+      uni: (x) => ws.send(x),
       broad: (txt) => {
          wss.clients.forEach((clientWs) => {
             clientWs.send(txt)
@@ -39,6 +39,7 @@ export const getOnMessage = (prop: OnMessageProp) => {
             registry,
             validate,
          })
+
          // -- //
          if (response.cast !== 'no') {
             let { cast, gift: downMessage } = response
