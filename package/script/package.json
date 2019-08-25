@@ -9,6 +9,7 @@
       "@pixelpony/client": "*",
       "@pixelpony/server": "*",
       "express": "^4.17.1",
+      "is-root": "^2.1.0",
       "tslib": "^1.10.0"
    },
    "devDependencies": {

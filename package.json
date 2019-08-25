@@ -15,11 +15,11 @@
       "build:script": "cd package/script && tsc",
       "build:server": "cd package/server && tsc",
       "build:shared": "cd package/shared && tsc",
-      "dev": "nodemon --inspect package/script/dist/serve.js",
+      "dev": "nodemon --inspect package/script/dist/src/serve.js",
       "gen:Share.json": "typescript-json-schema --noExtraProps --required ./package/shared/**/*.ts Share | js-beautify -s 3 > ./package/shared/src/jsonSchema/Share.json",
       "lint": "eslint **/*.ts",
       "production": "pm2 reload ecosystem.config.js --env production",
-      "start": "node package/script/dist/serve.js",
+      "start": "node package/script/dist/src/serve.js",
       "test:server": "cd package/server && jest --watch all"
    },
    "devDependencies": {
