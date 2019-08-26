@@ -40,6 +40,8 @@ export const getOnMessage = (prop: OnMessageProp) => {
             validate,
          })
 
+         console.log(response)
+
          // -- //
          if (response.cast !== 'no') {
             let { cast, gift: downMessage } = response

@@ -49,7 +49,6 @@ export const server: Server = (param) => {
 
       ws.onmessage = (event) => {
          let { type } = event
-         console.log(event)
          if (type === 'message') {
             // ^ Maybe unecessary verification - idk ox
             onmessage(event)

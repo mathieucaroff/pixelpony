@@ -1,55 +1,62 @@
-import { Gift, Share } from '@pixelpony/shared'
+import { createRegisterComm } from './comm'
+import { load } from './load'
+import { createAutoreload } from './autoreload'
 
-let ws = new WebSocket(`ws://${location.host}/websocket`)
-
-let sendMessage = (message: Share) => {
-   ws.send(JSON.stringify(message))
+let randomChoice = (arr) => {
+   return arr[Math.floor(Math.random() * arr.length)]
 }
 
-ws.onmessage = (messageEvent) => {
-   let { data } = messageEvent
-   let message: Gift = JSON.parse(data)
-   if (false) {
-   } else if (message.kind === 'error') {
-      console.warn(
-         'Server signals an error and provides the following context:',
-         message.context,
-      )
-   } else if (message.kind === 'pong') {
-      console.log('pong:', message.payload)
-   } else if (message.kind === 'chat') {
-      console.log('chat:', message.content)
-   } else if (message.kind === 'move') {
-      console.log('move:', message)
-   } else if (message.kind === 'ponyToken') {
-      console.log('ponyToken:', message.ponyToken)
-   }
-}
-let expo = window as any
-
-expo.ws = ws
-
-expo.registerPony = ({ pony }) => {
-   sendMessage({
-      kind: 'registerPony',
-      pony,
-   })
+let rv = () => {
+   // random vowel
+   return randomChoice('aeiou')
 }
 
-expo.chat = ({ content }) => {
-   sendMessage({
-      kind: 'chat',
-      content,
-      ponyToken: expo.ponyToken,
-   })
+let rc = () => {
+   return Math.random()
+      .toString(16)
+      .substr(2, 6)
 }
 
-expo.move = ({ pos, speed }) => {
-   sendMessage({
-      kind: 'move',
-      pos,
-      speed,
-      time: new Date().toJSON(),
-      ponyToken: expo.ponyToken,
-   })
+let randomName = () => {
+   return randomChoice([
+      () => `Apple J${rv()}ck`,
+      () => `Fl${rv()}t${rv()}rshy`,
+      () => `P${rv()}nky P${rv()}e`,
+      () => `R${rv()}${rv()}nb${rv()}w D${rv()}sh`,
+      () => `R${rv()}r${rv()}ty`,
+      () => `Tw${rv()}l${rv()}ght Sp${rv()}rkle`,
+   ])()
 }
+
+let autoreload = createAutoreload()
+
+let registerComm = ((window as any).c = createRegisterComm({
+   pony: {
+      name: randomName(),
+      body: {
+         coat: {
+            color: rc(),
+         },
+         eye: {
+            color: rc(),
+         },
+         horn: {
+            color: rc(),
+            kind: 'common',
+         },
+         mane: {
+            color: rc(),
+            shape: 'twi',
+         },
+         tail: {
+            color: rc(),
+            shape: 'twi',
+         },
+      },
+   },
+}))
+
+load({
+   autoreload,
+   registerComm,
+})

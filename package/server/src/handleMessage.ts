@@ -38,6 +38,8 @@ export const handleMessage = (
       return wsError({ text })
    }
 
+   console.log(json)
+
    valid = validate.Share(json)
    if (!valid.data) {
       return wsError({ json, validation: valid.errors })
