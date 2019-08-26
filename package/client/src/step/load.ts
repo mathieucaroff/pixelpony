@@ -1,8 +1,8 @@
-import { RegisterComm } from './comm'
-import { Autoreload } from './autoreload'
-import { update } from './util/update'
-import { Chatbox } from './chatbox'
-import { maybeLog } from './maybeLog'
+import { RegisterComm } from '../misc/comm'
+import { Autoreload } from '../pagetool/autoreload'
+import { update } from '../util/update'
+import { Chatbox } from '../component/chatbox'
+import { maybeLog } from '../pagetool/maybeLog'
 
 export interface LoadParam {
    autoreload: Autoreload

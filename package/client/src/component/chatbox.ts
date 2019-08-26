@@ -1,6 +1,6 @@
-import { El } from './el'
-import { maybeLog } from './maybeLog'
-import { select } from './util/select'
+import { El } from '../dom/el'
+import { maybeLog } from '../pagetool/maybeLog'
+import { select } from '../util/select'
 
 export interface ChatboxProp {
    el: El

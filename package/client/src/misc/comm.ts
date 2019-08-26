@@ -1,6 +1,6 @@
 import { Gift, Share, Pony } from '@pixelpony/shared'
-import { createOnKind } from './util/onKind'
-import { maybeLog } from './maybeLog'
+import { createOnKind } from '../util/onKind'
+import { maybeLog } from '../pagetool/maybeLog'
 
 export interface RegisterCommProp {
    pony: Pony
