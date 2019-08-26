@@ -1,8 +1,5 @@
 import { Gift, Share, Pony } from '@pixelpony/shared'
-import { on } from 'cluster'
-import { createOn } from './util/on'
 import { createOnKind } from './util/onKind'
-import { ifEnabled } from './ifEnabled'
 import { maybeLog } from './maybeLog'
 
 export interface RegisterCommProp {
@@ -54,8 +51,12 @@ export const createRegisterComm = (prop: RegisterCommProp) => {
       let { payload } = gift
       console.log('pong', payload)
    })
-   onKind('chat').do(console.log)
-   onKind('move').do(console.log)
+   onKind('chat').do((msg) => {
+      maybeLog('chat', msg)
+   })
+   onKind('move').do((msg) => {
+      maybeLog('move', msg)
+   })
 
    let sendMessage = (message: Share) => {
       maybeLog('share', message)
