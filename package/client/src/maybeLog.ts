@@ -7,5 +7,13 @@ export const maybeLog = (name, value?, callback?: () => any) => {
          output = callback()
       }
       console.log(`${name}:`, output)
+      if (true) {
+         if (typeof output !== 'string') {
+            output = JSON.stringify(output, null, 2)
+         }
+         let pre = document.createElement('pre')
+         pre.innerText = `${name}: ${output}`
+         document.body.appendChild(pre)
+      }
    })
 }
