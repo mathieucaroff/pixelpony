@@ -5,7 +5,7 @@ module.exports = {
          name: 'pixelpony',
          script: 'package/script/dist/serve.js',
 
-         // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
+         // Options reference: https://pm2.keymetrics.io/docs/usage/application-declaration/
          args: '',
          instances: 1,
          autorestart: true,
