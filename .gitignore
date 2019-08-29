@@ -1,0 +1,22 @@
+# node
+node_modules
+
+# typescript
+tsconfig.tsbuildinfo
+
+# yarn
+*.log
+
+# js output for webpack and tsc
+./logs/*
+./settings/*
+./src/scripts/*
+./store/*
+./tools/data/*
+./tools/output/images/*
+./tools/output/pony/*
+./tools/output/renders/*
+./tools/temp/cms/*
+./tools/temp/font/*
+./tools/temp/graphics/*
+./tools/temp/pony/*
