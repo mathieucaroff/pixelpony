@@ -6,12 +6,15 @@ export const ifEnabled = (longName, shortName = '') => {
    }
 
    let test = () => {
-      let result: boolean = window[longName] as any
+      let result: boolean | undefined = window[longName] as any
       if (result === undefined && hashhas(longName)) {
          result = true
       }
       if (result === undefined && shortName && hashhas(shortName)) {
          result = true
+      }
+      if (result !== true) {
+         result = false
       }
       return result
    }
