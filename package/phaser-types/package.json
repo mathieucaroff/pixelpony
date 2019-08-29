@@ -1,8 +1,0 @@
-{
-  "name": "@pixelpony/phaser-types",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "types": "phaser.d.ts",
-  "license": "MIT"
-}

@@ -38,11 +38,11 @@ export default (env, argv): webpack.Configuration[] => {
                   context: __dirname,
                   from: 'asset/favicon.ico',
                },
-               // {
-               //    context: __dirname,
-               //    from: 'src/public',
-               //    to: 'public',
-               // },
+               {
+                  context: __dirname,
+                  from: 'asset/public',
+                  to: 'public/asset',
+               },
             ]),
          ],
       },
