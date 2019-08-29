@@ -19,9 +19,22 @@ export const createChatbox = (prop: ChatboxProp) => {
    let form = el('form', {}, [box])
 
    box.addEventListener('keydown', (ev) => {
-      maybeLog('keydown', select(ev, 'code', 'key', 'type'))
-      if (ev.key === 'Enter') {
+      maybeLog('keydown', 0, () =>
+         select(
+            ev,
+            'code',
+            'key',
+            'type',
+            'altKey',
+            'ctrlKey',
+            'shiftKey',
+            'keyCode',
+         ),
+      )
+      if (ev.key === 'Enter' && ev.shiftKey !== true) {
          send(box.value)
+         box.value = ''
+         ev.preventDefault()
       }
    })
 

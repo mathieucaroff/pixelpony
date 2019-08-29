@@ -1,4 +1,5 @@
 import { ifEnabled } from './ifEnabled'
+import { log } from './log'
 
 export const maybeLog = (name, value?, callback?: () => any) => {
    ifEnabled(name).do(() => {
@@ -6,14 +7,6 @@ export const maybeLog = (name, value?, callback?: () => any) => {
       if (callback) {
          output = callback()
       }
-      console.log(`${name}:`, output)
-      if (true) {
-         if (typeof output !== 'string') {
-            output = JSON.stringify(output, null, 2)
-         }
-         let pre = document.createElement('pre')
-         pre.innerText = `${name}: ${output}`
-         document.body.appendChild(pre)
-      }
+      log(`${name}:`, output)
    })
 }

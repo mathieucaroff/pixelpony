@@ -1,9 +1,9 @@
-import { createRegisterComm } from './misc/comm'
-import { load } from './step/load'
-import { createAutoreload } from './pagetool/autoreload'
-import { createRandom } from './misc/random'
 import { createChatbox } from './component/chatbox'
 import { createEl } from './dom/el'
+import { createRegisterComm } from './misc/comm'
+import { createRandom } from './misc/random'
+import { createAutoreload } from './pagetool/autoreload'
+import { load } from './step/load'
 
 let autoreload = createAutoreload()
 
